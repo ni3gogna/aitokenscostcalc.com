@@ -1,0 +1,303 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Calculator from "../components/Calculator.astro";
+---
+
+<Layout>
+	<header class="mx-auto max-w-4xl px-4 pt-6">
+		<div class="flex items-center justify-between">
+			<span class="font-sans text-[14px] font-medium leading-5 text-ink">AI Tokens Cost Calculator</span>
+			<div class="flex items-center gap-3">
+				<button
+					type="button"
+					id="theme-toggle"
+					aria-label="Toggle dark mode"
+					class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-body transition-colors hover:border-hairline-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
+				>
+					<svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="4"></circle>
+						<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+					</svg>
+					<svg class="block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+					</svg>
+				</button>
+				<a
+					href="https://github.com"
+					class="font-sans text-[13px] text-body hover:text-ink"
+					rel="noopener noreferrer"
+				>
+					About
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<section class="mx-auto max-w-4xl px-4 pb-10 pt-12 text-center">
+		<span class="inline-flex items-center rounded-full border border-hairline bg-canvas-soft px-3 py-1 font-mono text-[12px] leading-4 text-body">
+			Free · No signup · Runs entirely in your browser
+		</span>
+		<h1 class="mt-4 font-sans text-[32px] font-semibold leading-10 tracking-[-1.28px] text-ink sm:text-[48px] sm:leading-[48px] sm:tracking-[-2.4px]">
+			Know your AI API costs before you build.
+		</h1>
+		<p class="mx-auto mt-3 max-w-xl font-sans text-[18px] leading-7 text-body">
+			Paste a prompt, or enter tokens or words, and compare real-time cost estimates across Claude, GPT, Gemini, and Grok — with per-provider tokenization, not a flat guess.
+		</p>
+	</section>
+
+	<Calculator />
+
+	<section class="mx-auto max-w-3xl px-4 pb-4 pt-24">
+		<div class="space-y-10 border-t border-hairline pt-12">
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					What is the AI Tokens Cost Calculator?
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The AI Tokens Cost Calculator is a free, browser-based tool for estimating how much a prompt or
+					workload actually costs to run across today's leading language models. Instead of digging
+					through four separate pricing pages and doing the math by hand, you paste a prompt — or enter
+					a token or word count — and get a side-by-side cost comparison for OpenAI, Anthropic Claude,
+					Google Gemini, and xAI Grok in seconds. As an AI model token cost calculator, it's built for
+					developers, product teams, and founders who need to budget an API integration before writing
+					a single line of production code.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					How much do AI tokens cost?
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Every major provider bills by the token, not by the request, and input and output tokens are
+					priced differently — output tokens typically cost four to six times more than input tokens on
+					the same model. That makes how much tokens cost a harder question than it looks: a
+					cheap-looking per-million-token rate can still add up to a large bill if your workload
+					generates long responses, or if the same request runs thousands of times a day. This
+					calculator handles the tokenization and the arithmetic for you, using each provider's
+					published pricing per million input and output tokens, so you see a real dollar estimate
+					instead of a rough guess.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					OpenAI token price calculator
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Need to calculate OpenAI token price, or just get a quick OpenAI token cost calculator
+					readout? Select any GPT-5.5, GPT-5.4, or GPT-5.4 nano model and the calculator tokenizes your
+					prompt with OpenAI's real o200k_base tokenizer — the same encoding OpenAI's API uses
+					internally — so the token count and resulting price are exact, not estimated. Use it as an
+					OpenAI tokens cost calculator to line up flagship, balanced, and budget tiers side by side
+					before picking a model for a new feature.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					Anthropic Claude token cost calculator
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					For Claude Opus 4.8, Claude Sonnet 4.6, and Claude Haiku 4.5, the tool doubles as an Anthropic
+					token cost calculator and Claude token price calculator in one: enter a prompt or token count
+					and get an instant estimate for each Claude tier, including how a 1M-token context window
+					changes cost at scale. Anthropic doesn't publish a browser-usable tokenizer, so Claude tokens
+					cost calculator results here are close algorithmic approximations rather than exact
+					server-side counts — every result card flags this so you know exactly what you're looking at.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					Compare token cost across every AI provider
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Because every model runs on the same input, this also works as a way to compare token cost
+					for AI providers head-to-head — Claude against GPT, Gemini against Grok, or all four at once
+					— using the same prompt, the same expected output length, and each provider's current
+					per-million-token pricing.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					Find the cheapest AI model for your tokens
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Once you run the numbers, results are ranked automatically, so you can immediately spot the
+					cheapest AI for your tokens and how much you'd save by switching tiers or providers for a
+					given workload. It's a fast way to answer what's the cheapest model for my AI feature without
+					building a spreadsheet — paste, compare, and decide.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					Frequently asked questions
+				</h2>
+				<div class="mt-4 space-y-5">
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much are AI tokens costing?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							AI tokens cost anywhere from about $0.20 to $5 per million input tokens depending on the
+							provider and model tier, with output tokens priced four to six times higher than input
+							on the same model. Budget models like GPT-5.4 nano, Gemini 3.1 Flash-Lite, and Grok 4.1
+							Fast sit at the low end; flagship models like GPT-5.5, Claude Opus 4.8, and Gemini 3.1
+							Pro sit at the high end. Use the calculator above for an exact price on your specific
+							prompt.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much do 1000 tokens cost?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							Since providers price per million tokens, 1,000 tokens costs a fraction of a cent
+							everywhere. Budget-tier input pricing works out to roughly $0.0002–$0.001 per 1,000
+							tokens (GPT-5.4 nano, Gemini 3.1 Flash-Lite, Grok 4.1 Fast), while flagship-tier input
+							pricing runs about $0.002–$0.005 per 1,000 tokens (GPT-5.5, Claude Opus 4.8, Gemini 3.1
+							Pro). Output tokens cost several times more per 1,000 than input tokens on every model.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">What is token cost across top AI models?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							Per million tokens (input / output), flagship pricing looks roughly like: GPT-5.5 $5 /
+							$30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, and Grok 4.5 $2 / $6 — with each
+							provider also offering cheaper balanced and budget tiers at a fraction of the price.
+							Pricing changes often, so the calculator above pulls current per-provider rates and
+							computes your actual cost rather than relying on a static table.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How to compare cost of top AI models?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							Enter your workload once — paste a prompt, or set a token or word count plus expected
+							output length — then select the models you want to compare, from a single provider or
+							across all of them. The calculator normalizes every provider's pricing into one dollar
+							total per model and ranks them cheapest to priciest, so you're comparing apples to
+							apples instead of eyeballing per-token rates across four different pricing pages.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">
+							How to calculate token cost for various top AI models?
+						</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							The formula is the same for every provider: (input tokens ÷ 1,000,000 × input price per
+							million) + (output tokens ÷ 1,000,000 × output price per million) = total cost. What
+							differs is the tokenizer and the price per million tokens, which vary by model. This
+							calculator automates both steps — tokenizing your prompt per model and applying each
+							provider's current pricing — so you get an exact total for GPT, Claude, Gemini, and
+							Grok without doing the math by hand.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">
+							Does this calculator use real token counts or estimates?
+						</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							OpenAI counts are exact, computed with the real o200k_base tokenizer. Claude, Gemini,
+							and Grok counts are close algorithmic approximations, since none of those providers
+							publish a browser-usable tokenizer — every estimate is clearly labeled.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">Is my prompt uploaded anywhere?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							No. Every calculation, including tokenization, runs entirely in your browser. Nothing
+							you paste is sent to a server or stored.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How often is pricing updated?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							Model pricing is checked and refreshed regularly, with the last-verified date shown
+							under your results. Providers change prices often, so always confirm against the
+							official pricing page linked on each result card before budgeting.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "How much are AI tokens costing?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "AI tokens cost anywhere from about $0.20 to $5 per million input tokens depending on the provider and model tier, with output tokens priced four to six times higher than input on the same model. Budget models like GPT-5.4 nano, Gemini 3.1 Flash-Lite, and Grok 4.1 Fast sit at the low end; flagship models like GPT-5.5, Claude Opus 4.8, and Gemini 3.1 Pro sit at the high end.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "How much do 1000 tokens cost?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Since providers price per million tokens, 1,000 tokens costs a fraction of a cent everywhere. Budget-tier input pricing works out to roughly $0.0002–$0.001 per 1,000 tokens (GPT-5.4 nano, Gemini 3.1 Flash-Lite, Grok 4.1 Fast), while flagship-tier input pricing runs about $0.002–$0.005 per 1,000 tokens (GPT-5.5, Claude Opus 4.8, Gemini 3.1 Pro). Output tokens cost several times more per 1,000 than input tokens on every model.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "What is token cost across top AI models?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Per million tokens (input / output), flagship pricing looks roughly like: GPT-5.5 $5 / $30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, and Grok 4.5 $2 / $6 — with each provider also offering cheaper balanced and budget tiers at a fraction of the price. Pricing changes often, so the calculator above pulls current per-provider rates and computes your actual cost rather than relying on a static table.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "How to compare cost of top AI models?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Enter your workload once — paste a prompt, or set a token or word count plus expected output length — then select the models you want to compare, from a single provider or across all of them. The calculator normalizes every provider's pricing into one dollar total per model and ranks them cheapest to priciest, so you're comparing apples to apples instead of eyeballing per-token rates across four different pricing pages.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "How to calculate token cost for various top AI models?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "The formula is the same for every provider: (input tokens ÷ 1,000,000 × input price per million) + (output tokens ÷ 1,000,000 × output price per million) = total cost. What differs is the tokenizer and the price per million tokens, which vary by model. This calculator automates both steps — tokenizing your prompt per model and applying each provider's current pricing — so you get an exact total for GPT, Claude, Gemini, and Grok without doing the math by hand.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "Does this calculator use real token counts or estimates?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "OpenAI counts are exact, computed with the real o200k_base tokenizer. Claude, Gemini, and Grok counts are close algorithmic approximations, since none of those providers publish a browser-usable tokenizer.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "Is my prompt uploaded anywhere?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "No. Every calculation, including tokenization, runs entirely in your browser. Nothing you paste is sent to a server or stored.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "How often is pricing updated?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Model pricing is checked and refreshed regularly, with the last-verified date shown under your results. Always confirm against the official pricing page before budgeting.",
+				},
+			},
+		],
+	})}
+	/>
+
+	<footer class="mx-auto mt-16 max-w-4xl px-4 pb-12">
+		<div class="border-t border-hairline pt-6">
+			<p class="font-sans text-[13px] leading-5 text-mute">
+				Estimates only. Token counts for Claude, Gemini, and Grok are algorithmic approximations — none of these providers publish a browser-usable tokenizer. OpenAI counts use the real o200k_base tokenizer. Always verify pricing against each provider's official page before budgeting.
+			</p>
+		</div>
+	</footer>
+</Layout>

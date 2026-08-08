@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__astro-docs__search_astro_docs",
+      "Bash(node scripts/validate_palette.js \"#10a37f,#d97757,#4285f4,#7928ca\" --mode light)",
+      "Bash(rm -f src/components/Welcome.astro src/assets/astro.svg src/assets/background.svg)",
+      "Bash(rmdir src/assets)",
+      "Bash(npx astro *)",
+      "Bash(npm install *)",
+      "Bash(sort -k5 -n -r)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(node -e \"console.log\\(require\\('C:/Users/nitin/Desktop/My Projects/aitokenscostcalc.com/node_modules/sharp'\\)\\)\")",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

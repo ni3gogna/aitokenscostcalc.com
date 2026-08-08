@@ -1,0 +1,419 @@
+---
+import { MODELS, PROVIDERS, PRICING_LAST_VERIFIED, type Provider } from "../data/models";
+
+const providerOrder: Provider[] = ["anthropic", "openai", "google", "xai"];
+const tierLabel = { flagship: "Flagship", balanced: "Balanced", budget: "Budget" } as const;
+---
+
+<section id="calculator" class="mx-auto max-w-4xl px-4">
+  <form id="calc-form" class="rounded-lg border border-hairline bg-canvas p-6 sm:p-8 shadow-[0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+    <!-- Input mode -->
+    <div>
+      <h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Your input</h2>
+      <div role="tablist" aria-label="Input mode" class="mt-3 flex flex-wrap gap-2">
+        <button type="button" class="mode-tab" data-mode="prompt" aria-selected="true" role="tab">Paste prompt text</button>
+        <button type="button" class="mode-tab" data-mode="tokens" aria-selected="false" role="tab">Enter token count</button>
+        <button type="button" class="mode-tab" data-mode="words" aria-selected="false" role="tab">Enter word count</button>
+      </div>
+
+      <div class="mt-4" data-mode-panel="prompt">
+        <label for="prompt-input" class="sr-only">Prompt text</label>
+        <textarea
+          id="prompt-input"
+          rows="6"
+          maxlength="200000"
+          placeholder="Paste your system prompt, user message, or document here…"
+          name="prompt"
+          class="w-full resize-y rounded-sm border border-hairline bg-canvas p-3 font-sans text-[14px] leading-5 text-ink placeholder:text-mute focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
+        ></textarea>
+        <p class="mt-1 font-mono text-[12px] leading-4 text-mute">
+          <span id="prompt-word-count">0</span> words · computed entirely in your browser, never uploaded
+        </p>
+      </div>
+
+      <div class="mt-4 hidden" data-mode-panel="tokens">
+        <label for="tokens-input" class="block font-sans text-[14px] font-medium leading-5 text-ink">Input tokens</label>
+        <input
+          id="tokens-input"
+          name="tokens"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          step="1"
+          value="1000"
+          class="mt-1 w-full rounded-sm border border-hairline bg-canvas px-3 text-[14px] leading-5 text-ink h-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
+        />
+      </div>
+
+      <div class="mt-4 hidden" data-mode-panel="words">
+        <label for="words-input" class="block font-sans text-[14px] font-medium leading-5 text-ink">Input words</label>
+        <input
+          id="words-input"
+          name="words"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          step="1"
+          value="750"
+          class="mt-1 w-full rounded-sm border border-hairline bg-canvas px-3 text-[14px] leading-5 text-ink h-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
+        />
+      </div>
+
+      <div class="mt-4 max-w-xs">
+        <label for="output-input" class="block font-sans text-[14px] font-medium leading-5 text-ink">Expected response length (tokens)</label>
+        <input
+          id="output-input"
+          name="output-tokens"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          step="1"
+          value="500"
+          class="mt-1 w-full rounded-sm border border-hairline bg-canvas px-3 text-[14px] leading-5 text-ink h-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
+        />
+        <p class="mt-1 font-mono text-[12px] leading-4 text-mute">Output tokens cost 4–6× more than input on most models</p>
+      </div>
+    </div>
+
+    <!-- Model selection -->
+    <div class="mt-8 border-t border-hairline pt-6">
+      <h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Models to compare</h2>
+      <div class="mt-3 grid gap-4 sm:grid-cols-2">
+        {providerOrder.map((provider) => (
+          <fieldset class="rounded-md border border-hairline p-3">
+            <legend class="px-1 font-sans text-[14px] font-medium leading-5 text-ink">{PROVIDERS[provider].label}</legend>
+            <div class="flex flex-wrap gap-2">
+              {MODELS.filter((m) => m.provider === provider).map((model) => (
+                <label class="model-chip">
+                  <input
+                    type="checkbox"
+                    name="model"
+                    value={model.id}
+                    checked={model.tier === "flagship"}
+                  />
+                  <span>{model.name}<span class="text-mute"> · {tierLabel[model.tier]}</span></span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+    </div>
+
+    <button
+      id="calc-submit"
+      type="submit"
+      class="mt-8 inline-flex h-12 items-center justify-center rounded-pill bg-primary px-6 font-sans text-[16px] font-medium leading-6 text-on-primary transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2 disabled:opacity-60"
+    >
+      Calculate cost
+    </button>
+  </form>
+
+  <div id="results" class="mt-12 hidden" aria-live="polite">
+    <h2 class="sr-only">Results</h2>
+    <div id="recommendation" class="rounded-lg border border-hairline bg-canvas-soft p-4"></div>
+
+    <div id="cost-cards" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
+
+    <div class="mt-6 rounded-lg border border-hairline bg-canvas p-6">
+      <h3 class="font-sans text-[16px] font-medium leading-6 text-ink">Cost per model</h3>
+      <div id="chart-legend" class="mt-2 flex flex-wrap gap-3"></div>
+      <svg id="chart" class="mt-3 w-full" role="img" aria-label="Bar chart comparing total cost per selected model"></svg>
+    </div>
+
+    <p class="mt-4 font-mono text-[12px] leading-4 text-mute">
+      Pricing last verified {PRICING_LAST_VERIFIED}. Provider prices change often — verify against the official pricing pages linked in each card before budgeting.
+    </p>
+  </div>
+</section>
+
+<style>
+  .mode-tab {
+    border-radius: var(--radius-pill-sm);
+    padding: 0 16px;
+    height: 32px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-body);
+    background: var(--color-canvas);
+    border: 1px solid var(--color-hairline);
+  }
+  .mode-tab[aria-selected="true"] {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+  }
+  .mode-tab:hover[aria-selected="false"] {
+    border-color: var(--color-hairline-strong);
+    color: var(--color-ink);
+  }
+  .mode-tab:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+  .model-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: var(--radius-pill-sm);
+    padding: 4px 12px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--color-body);
+    background: var(--color-canvas-soft);
+    border: 1px solid var(--color-hairline);
+    cursor: pointer;
+    user-select: none;
+  }
+  .model-chip:has(input:checked) {
+    background: var(--color-ink);
+    color: var(--color-on-primary);
+    border-color: var(--color-ink);
+  }
+  .model-chip:has(input:checked) .text-mute {
+    color: inherit;
+    opacity: 0.7;
+  }
+  .model-chip:hover:not(:has(input:checked)) {
+    border-color: var(--color-hairline-strong);
+    color: var(--color-ink);
+  }
+  .model-chip:has(input:focus-visible) {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+  .model-chip input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+</style>
+
+<script>
+  import { MODELS, PROVIDERS, type Model } from "../data/models";
+  import { countTokens, tokensFromWordCount, countWords } from "../lib/tokenize";
+  import { calculateCost, rankByCost, formatUsd, type ModelCost } from "../lib/cost";
+
+  type Mode = "prompt" | "tokens" | "words";
+
+  const form = document.getElementById("calc-form") as HTMLFormElement;
+  const modeTabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".mode-tab"));
+  const modePanels = Array.from(document.querySelectorAll<HTMLElement>("[data-mode-panel]"));
+  const promptInput = document.getElementById("prompt-input") as HTMLTextAreaElement;
+  const promptWordCount = document.getElementById("prompt-word-count") as HTMLElement;
+  const tokensInput = document.getElementById("tokens-input") as HTMLInputElement;
+  const wordsInput = document.getElementById("words-input") as HTMLInputElement;
+  const outputInput = document.getElementById("output-input") as HTMLInputElement;
+  const resultsEl = document.getElementById("results") as HTMLElement;
+  const recommendationEl = document.getElementById("recommendation") as HTMLElement;
+  const cardsEl = document.getElementById("cost-cards") as HTMLElement;
+  const legendEl = document.getElementById("chart-legend") as HTMLElement;
+  const chartEl = document.getElementById("chart") as unknown as SVGSVGElement;
+  const submitButton = document.getElementById("calc-submit") as HTMLButtonElement;
+
+  let mode: Mode = "prompt";
+
+  function setMode(next: Mode) {
+    mode = next;
+    for (const tab of modeTabs) {
+      tab.setAttribute("aria-selected", String(tab.dataset.mode === next));
+    }
+    for (const panel of modePanels) {
+      panel.classList.toggle("hidden", panel.dataset.modePanel !== next);
+    }
+  }
+
+  for (const tab of modeTabs) {
+    tab.addEventListener("click", () => setMode(tab.dataset.mode as Mode));
+  }
+
+  promptInput.addEventListener("input", () => {
+    promptWordCount.textContent = countWords(promptInput.value).toLocaleString("en-US");
+  });
+
+  function selectedModels(): Model[] {
+    const ids = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="model"]:checked')).map(
+      (el) => el.value,
+    );
+    return MODELS.filter((m) => ids.includes(m.id));
+  }
+
+  async function inputTokensFor(model: Model): Promise<{ count: number; exact: boolean }> {
+    if (mode === "tokens") return { count: Number(tokensInput.value) || 0, exact: true };
+    if (mode === "words") return { count: tokensFromWordCount(Number(wordsInput.value) || 0), exact: false };
+    return countTokens(promptInput.value, model);
+  }
+
+  function renderChart(costs: ModelCost[]) {
+    const max = Math.max(...costs.map((c) => c.totalCost), 0.000001);
+    const barHeight = 24;
+    const gap = 12;
+    const rowHeight = barHeight + gap;
+    const height = costs.length * rowHeight + gap;
+    const labelWidth = 168;
+    const width = 640;
+    const plotWidth = width - labelWidth - 80;
+
+    chartEl.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    chartEl.setAttribute("height", String(height));
+    chartEl.innerHTML = "";
+
+    costs.forEach((c, i) => {
+      const y = gap + i * rowHeight;
+      const barW = Math.max(2, (c.totalCost / max) * plotWidth);
+      const color = PROVIDERS[c.model.provider].color;
+
+      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      label.setAttribute("x", String(labelWidth - 8));
+      label.setAttribute("y", String(y + barHeight / 2 + 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("font-family", "var(--font-sans)");
+      label.setAttribute("font-size", "13");
+      label.setAttribute("class", "fill-body");
+      label.textContent = c.model.name;
+      chartEl.appendChild(label);
+
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute("x", String(labelWidth));
+      rect.setAttribute("y", String(y));
+      rect.setAttribute("width", String(barW));
+      rect.setAttribute("height", String(barHeight));
+      rect.setAttribute("rx", "4");
+      rect.setAttribute("fill", color);
+      const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+      title.textContent = `${c.model.name}: ${formatUsd(c.totalCost)}`;
+      rect.appendChild(title);
+      chartEl.appendChild(rect);
+
+      const value = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      value.setAttribute("x", String(labelWidth + barW + 8));
+      value.setAttribute("y", String(y + barHeight / 2 + 4));
+      value.setAttribute("font-family", "var(--font-mono)");
+      value.setAttribute("font-size", "12");
+      value.setAttribute("class", "fill-ink");
+      value.textContent = formatUsd(c.totalCost);
+      chartEl.appendChild(value);
+    });
+
+    legendEl.innerHTML = "";
+    const seenProviders = new Set(costs.map((c) => c.model.provider));
+    for (const provider of seenProviders) {
+      const item = document.createElement("span");
+      item.className = "inline-flex items-center gap-1.5 font-sans text-[12px] text-body";
+      const swatch = document.createElement("span");
+      swatch.style.cssText = `display:inline-block;width:10px;height:10px;border-radius:2px;background:${PROVIDERS[provider].color}`;
+      item.appendChild(swatch);
+      item.appendChild(document.createTextNode(PROVIDERS[provider].label));
+      legendEl.appendChild(item);
+    }
+  }
+
+  function renderCards(costs: ModelCost[], exactByModelId: Map<string, boolean>) {
+    cardsEl.innerHTML = "";
+    for (const c of costs) {
+      const exact = exactByModelId.get(c.model.id) ?? false;
+      const card = document.createElement("article");
+      card.className = "rounded-md border border-hairline bg-canvas p-4";
+
+      const provider = document.createElement("p");
+      provider.className = "font-mono text-[12px] leading-4 text-mute";
+      provider.textContent = PROVIDERS[c.model.provider].label.toUpperCase();
+      card.appendChild(provider);
+
+      const name = document.createElement("h3");
+      name.className = "mt-1 font-sans text-[16px] font-medium leading-6 text-ink";
+      name.textContent = c.model.name;
+      card.appendChild(name);
+
+      if (!c.fitsContext) {
+        const warn = document.createElement("p");
+        warn.className = "mt-1 font-sans text-[12px] leading-4 text-warning-deep";
+        warn.textContent = `Exceeds this model's ${c.model.contextWindow.toLocaleString("en-US")}-token context window`;
+        card.appendChild(warn);
+      }
+
+      const total = document.createElement("p");
+      total.className = "mt-2 font-sans text-[24px] font-semibold leading-8 tracking-[-0.96px] text-ink";
+      total.textContent = formatUsd(c.totalCost);
+      card.appendChild(total);
+
+      const breakdown = document.createElement("p");
+      breakdown.className = "mt-1 font-mono text-[12px] leading-4 text-mute";
+      breakdown.textContent = `in ${formatUsd(c.inputCost)} + out ${formatUsd(c.outputCost)}${exact ? "" : " · ≈ estimate"}`;
+      card.appendChild(breakdown);
+
+      const link = document.createElement("a");
+      link.className = "mt-2 inline-block font-sans text-[13px] text-link hover:underline";
+      link.href = PROVIDERS[c.model.provider].pricingUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Verify pricing →";
+      card.appendChild(link);
+
+      cardsEl.appendChild(card);
+    }
+  }
+
+  function renderRecommendation(costs: ModelCost[]) {
+    const fitting = costs.filter((c) => c.fitsContext);
+    if (fitting.length < 2) {
+      recommendationEl.textContent = "";
+      return;
+    }
+    const cheapest = fitting[0];
+    const priciest = fitting[fitting.length - 1];
+    const savingsPct = priciest.totalCost > 0 ? Math.round((1 - cheapest.totalCost / priciest.totalCost) * 100) : 0;
+
+    recommendationEl.innerHTML = "";
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "font-mono text-[12px] leading-4 text-mute";
+    eyebrow.textContent = "CHEAPEST FOR THIS WORKLOAD";
+    recommendationEl.appendChild(eyebrow);
+
+    const line = document.createElement("p");
+    line.className = "mt-1 font-sans text-[16px] leading-6 text-ink";
+    const strong = document.createElement("span");
+    strong.className = "font-medium";
+    strong.textContent = cheapest.model.name;
+    line.appendChild(strong);
+    line.appendChild(
+      document.createTextNode(
+        savingsPct > 0
+          ? ` — ${savingsPct}% cheaper than ${priciest.model.name} for the same input/output.`
+          : ` is your only option that fits this workload's context window.`,
+      ),
+    );
+    recommendationEl.appendChild(line);
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const models = selectedModels();
+    if (models.length === 0 || submitButton.disabled) return;
+
+    submitButton.disabled = true;
+    try {
+      const outputTokens = Number(outputInput.value) || 0;
+      const results = await Promise.all(
+        models.map(async (model) => {
+          const { count, exact } = await inputTokensFor(model);
+          return { cost: calculateCost(model, count, outputTokens), exact };
+        }),
+      );
+
+      const exactByModelId = new Map(results.map((r) => [r.cost.model.id, r.exact]));
+      const ranked = rankByCost(results.map((r) => r.cost));
+
+      resultsEl.classList.remove("hidden");
+      renderRecommendation(ranked);
+      renderCards(ranked, exactByModelId);
+      renderChart(ranked);
+      resultsEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+</script>
