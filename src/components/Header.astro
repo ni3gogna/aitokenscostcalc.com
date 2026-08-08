@@ -1,0 +1,33 @@
+---
+const navLinks = [
+	{ href: "/about-us", label: "About" },
+	{ href: "/contact-us", label: "Contact" },
+];
+---
+
+<header class="mx-auto max-w-4xl px-4 pt-6">
+	<div class="flex items-center justify-between">
+		<a href="/" class="font-sans text-[14px] font-medium leading-5 text-ink">AI Tokens Cost Calculator</a>
+		<div class="flex items-center gap-3">
+			<button
+				type="button"
+				id="theme-toggle"
+				aria-label="Toggle dark mode"
+				class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-body transition-colors hover:border-hairline-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
+			>
+				<svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="12" cy="12" r="4"></circle>
+					<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+				</svg>
+				<svg class="block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+				</svg>
+			</button>
+			{navLinks.map((link) => (
+				<a href={link.href} class="font-sans text-[13px] text-body hover:text-ink">
+					{link.label}
+				</a>
+			))}
+		</div>
+	</div>
+</header>

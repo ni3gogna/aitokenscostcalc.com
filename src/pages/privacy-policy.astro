@@ -1,0 +1,118 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Privacy Policy — AI Tokens Cost Calculator";
+const description = "Privacy Policy for AI Tokens Cost Calculator: what data we collect, how prompts are processed in your browser, and how cookies or analytics may be used.";
+const contactEmail = "levelupeveryday.official@gmail.com";
+const lastUpdated = "August 8, 2026";
+---
+
+<Layout title={title} description={description}>
+	<Header />
+
+	<section class="mx-auto max-w-3xl px-4 pb-4 pt-12">
+		<h1 class="font-sans text-[32px] font-semibold leading-10 tracking-[-1.28px] text-ink sm:text-[48px] sm:leading-[48px] sm:tracking-[-2.4px]">
+			Privacy Policy
+		</h1>
+		<p class="mt-3 font-sans text-[13px] leading-5 text-mute">Last updated: {lastUpdated}</p>
+
+		<div class="mt-8 space-y-8">
+			<div>
+				<p class="font-sans text-[15px] leading-7 text-body">
+					AI Tokens Cost Calculator ("we," "us," or "the Site") is operated by Level Up Everyday. This
+					Privacy Policy explains what information is collected when you use the Site, how it's used,
+					and the choices you have.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Prompts and calculator input</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The token cost calculator runs entirely in your browser. Any prompt text, token counts, or
+					other input you enter is tokenized and priced locally on your device and is not transmitted to
+					our servers or stored by us. If you close or reload the page, that input is gone.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Information we may collect</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					We don't require an account or ask you to submit personal information to use the calculator.
+					However, like most websites, we may use standard web technologies that collect limited
+					information automatically:
+				</p>
+				<ul class="mt-3 list-disc space-y-2 pl-5 font-sans text-[15px] leading-7 text-body">
+					<li>
+						<strong class="font-medium text-ink">Analytics.</strong> We may use privacy-conscious analytics
+						tools (such as Google Analytics) to understand aggregate traffic — pages visited, approximate
+						location, device and browser type, and referring site. This data is not tied to your prompt
+						input.
+					</li>
+					<li>
+						<strong class="font-medium text-ink">Cookies and local storage.</strong> We use browser local
+						storage to remember your theme preference (light or dark mode). If analytics or advertising
+						is enabled, those services may also set their own cookies or similar identifiers, subject to
+						their own privacy policies.
+					</li>
+					<li>
+						<strong class="font-medium text-ink">Advertising.</strong> We may display ads through
+						third-party ad networks in the future. Ad networks may use cookies or device identifiers to
+						serve relevant ads and measure performance; we do not control how they use that data.
+					</li>
+					<li>
+						<strong class="font-medium text-ink">Server logs.</strong> Our hosting provider may
+						automatically log standard technical data (IP address, browser type, timestamps) for
+						security and reliability purposes, as most web hosts do.
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">How we use information</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Any aggregate data collected is used only to understand how the Site is used, fix bugs,
+					improve performance, and — if advertising is enabled — to support the free tool through ad
+					revenue. We do not sell personal information.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Third-party services</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The Site may link to third-party pricing pages (OpenAI, Anthropic, Google, xAI) and may use
+					third-party analytics or advertising services. We are not responsible for the privacy
+					practices of those third parties — review their policies directly for details.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Children's privacy</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The Site is not directed at children under 13, and we do not knowingly collect personal
+					information from children.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Changes to this policy</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					We may update this Privacy Policy from time to time, for example if we add analytics or
+					advertising. The "Last updated" date above reflects the most recent revision.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Contact us</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Questions about this policy? Email{" "}
+					<a href={`mailto:${contactEmail}`} class="text-link underline hover:text-link-deep">{contactEmail}</a>{" "}
+					or visit the <a href="/contact-us" class="text-link underline hover:text-link-deep">Contact Us</a> page.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>

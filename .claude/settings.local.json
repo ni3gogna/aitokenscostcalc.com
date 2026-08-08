@@ -10,7 +10,8 @@
       "Bash(sort -k5 -n -r)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(node -e \"console.log\\(require\\('C:/Users/nitin/Desktop/My Projects/aitokenscostcalc.com/node_modules/sharp'\\)\\)\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(npm run *)"
     ]
   }
 }

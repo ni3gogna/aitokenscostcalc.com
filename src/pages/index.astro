@@ -1,37 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import Calculator from "../components/Calculator.astro";
 ---
 
 <Layout>
-	<header class="mx-auto max-w-4xl px-4 pt-6">
-		<div class="flex items-center justify-between">
-			<span class="font-sans text-[14px] font-medium leading-5 text-ink">AI Tokens Cost Calculator</span>
-			<div class="flex items-center gap-3">
-				<button
-					type="button"
-					id="theme-toggle"
-					aria-label="Toggle dark mode"
-					class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-body transition-colors hover:border-hairline-strong hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2"
-				>
-					<svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<circle cx="12" cy="12" r="4"></circle>
-						<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-					</svg>
-					<svg class="block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-					</svg>
-				</button>
-				<a
-					href="https://github.com"
-					class="font-sans text-[13px] text-body hover:text-ink"
-					rel="noopener noreferrer"
-				>
-					About
-				</a>
-			</div>
-		</div>
-	</header>
+	<Header />
 
 	<section class="mx-auto max-w-4xl px-4 pb-10 pt-12 text-center">
 		<span class="inline-flex items-center rounded-full border border-hairline bg-canvas-soft px-3 py-1 font-mono text-[12px] leading-4 text-body">
@@ -293,11 +268,5 @@ import Calculator from "../components/Calculator.astro";
 	})}
 	/>
 
-	<footer class="mx-auto mt-16 max-w-4xl px-4 pb-12">
-		<div class="border-t border-hairline pt-6">
-			<p class="font-sans text-[13px] leading-5 text-mute">
-				Estimates only. Token counts for Claude, Gemini, and Grok are algorithmic approximations — none of these providers publish a browser-usable tokenizer. OpenAI counts use the real o200k_base tokenizer. Always verify pricing against each provider's official page before budgeting.
-			</p>
-		</div>
-	</footer>
+	<Footer />
 </Layout>

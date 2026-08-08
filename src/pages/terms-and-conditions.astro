@@ -1,0 +1,100 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Terms & Conditions — AI Tokens Cost Calculator";
+const description = "Terms and Conditions for using AI Tokens Cost Calculator, including our disclaimer on pricing estimates and limitation of liability.";
+const contactEmail = "levelupeveryday.official@gmail.com";
+const lastUpdated = "August 8, 2026";
+---
+
+<Layout title={title} description={description}>
+	<Header />
+
+	<section class="mx-auto max-w-3xl px-4 pb-4 pt-12">
+		<h1 class="font-sans text-[32px] font-semibold leading-10 tracking-[-1.28px] text-ink sm:text-[48px] sm:leading-[48px] sm:tracking-[-2.4px]">
+			Terms & Conditions
+		</h1>
+		<p class="mt-3 font-sans text-[13px] leading-5 text-mute">Last updated: {lastUpdated}</p>
+
+		<div class="mt-8 space-y-8">
+			<div>
+				<p class="font-sans text-[15px] leading-7 text-body">
+					These Terms & Conditions ("Terms") govern your use of AI Tokens Cost Calculator (the "Site"),
+					operated by Level Up Everyday. By using the Site, you agree to these Terms. If you don't
+					agree, please don't use the Site.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Use of the Site</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The Site is provided free of charge for personal and commercial use in estimating AI token
+					costs. You may not use the Site to attempt to disrupt its operation, scrape it at abusive
+					volume, or misrepresent estimates it produces as official pricing from any AI provider.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Estimates only — no warranty on accuracy</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					All figures produced by the Site are estimates, not guarantees. OpenAI token counts are
+					computed with the real o200k_base tokenizer; token counts for Claude, Gemini, and Grok are
+					algorithmic approximations, since those providers don't publish a browser-usable tokenizer.
+					Pricing is checked periodically but can change at any time without notice. Always verify
+					current pricing against each provider's official page before making a budgeting or purchasing
+					decision. We make no warranty, express or implied, that any estimate on the Site is accurate,
+					complete, or current.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">No affiliation</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					AI Tokens Cost Calculator is an independent tool and is not affiliated with, endorsed by, or
+					sponsored by OpenAI, Anthropic, Google, xAI, or any other AI provider referenced on the Site.
+					All product names and trademarks belong to their respective owners.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Limitation of liability</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The Site is provided "as is," without warranties of any kind. To the fullest extent permitted
+					by law, Level Up Everyday shall not be liable for any direct, indirect, incidental, or
+					consequential damages — including unexpected API costs — arising from reliance on estimates
+					provided by the Site.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Third-party links</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					The Site links to third-party pricing pages for convenience. We don't control and aren't
+					responsible for the content, accuracy, or availability of those external sites.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Changes to these Terms</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					We may revise these Terms from time to time. Continued use of the Site after changes are
+					posted constitutes acceptance of the updated Terms. The "Last updated" date above reflects the
+					most recent revision.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Contact us</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Questions about these Terms? Email{" "}
+					<a href={`mailto:${contactEmail}`} class="text-link underline hover:text-link-deep">{contactEmail}</a>{" "}
+					or visit the <a href="/contact-us" class="text-link underline hover:text-link-deep">Contact Us</a> page.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>

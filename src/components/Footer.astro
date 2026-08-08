@@ -1,0 +1,26 @@
+---
+const footerLinks = [
+	{ href: "/about-us", label: "About Us" },
+	{ href: "/contact-us", label: "Contact Us" },
+	{ href: "/privacy-policy", label: "Privacy Policy" },
+	{ href: "/terms-and-conditions", label: "Terms & Conditions" },
+];
+---
+
+<footer class="mx-auto mt-16 max-w-4xl px-4 pb-12">
+	<div class="border-t border-hairline pt-6">
+		<nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
+			{footerLinks.map((link) => (
+				<a href={link.href} class="font-sans text-[13px] text-body hover:text-ink">
+					{link.label}
+				</a>
+			))}
+		</nav>
+		<p class="mt-4 font-sans text-[13px] leading-5 text-mute">
+			Estimates only. Token counts for Claude, Gemini, and Grok are algorithmic approximations — none of these providers publish a browser-usable tokenizer. OpenAI counts use the real o200k_base tokenizer. Always verify pricing against each provider's official page before budgeting.
+		</p>
+		<p class="mt-3 font-sans text-[13px] leading-5 text-mute">
+			© {new Date().getFullYear()} AI Tokens Cost Calculator, a Level Up Everyday project.
+		</p>
+	</div>
+</footer>

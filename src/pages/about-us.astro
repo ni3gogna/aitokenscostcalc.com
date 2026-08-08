@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "About Us — AI Tokens Cost Calculator";
+const description = "Learn about AI Tokens Cost Calculator, a free browser-based tool from Level Up Everyday for estimating and comparing OpenAI, Claude, Gemini, and Grok token pricing.";
+---
+
+<Layout title={title} description={description}>
+	<Header />
+
+	<section class="mx-auto max-w-3xl px-4 pb-4 pt-12">
+		<h1 class="font-sans text-[32px] font-semibold leading-10 tracking-[-1.28px] text-ink sm:text-[48px] sm:leading-[48px] sm:tracking-[-2.4px]">
+			About Us
+		</h1>
+
+		<div class="mt-8 space-y-8">
+			<div>
+				<p class="font-sans text-[15px] leading-7 text-body">
+					AI Tokens Cost Calculator is a free, browser-based tool for estimating and comparing what it
+					actually costs to run a prompt across today's leading AI models — OpenAI's GPT models,
+					Anthropic's Claude, Google's Gemini, and xAI's Grok. It's built and maintained by{" "}
+					<strong class="font-medium text-ink">Level Up Everyday</strong>.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Why we built it</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Every AI provider prices tokens differently, publishes pricing on a different page, and uses a
+					different tokenizer. Figuring out what a feature will actually cost to run in production means
+					digging through four separate pricing pages and doing the math by hand. We built this
+					calculator to collapse that into one step: paste a prompt or enter a token count, and see a
+					real, side-by-side dollar estimate for every major provider and model tier.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">How it works</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Everything runs client-side, in your browser. Your prompt is tokenized locally using the
+					real OpenAI tokenizer for exact GPT counts, and close algorithmic approximations for Claude,
+					Gemini, and Grok, since those providers don't publish a browser-usable tokenizer. Pricing per
+					model is checked and refreshed regularly, but you should always confirm current rates against
+					each provider's official pricing page before budgeting a production workload.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Get in touch</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Questions, feedback, or spotted a pricing error? Visit the{" "}
+					<a href="/contact-us" class="text-link underline hover:text-link-deep">Contact Us</a> page.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
