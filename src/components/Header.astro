@@ -3,11 +3,20 @@ const navLinks = [
 	{ href: "/about-us", label: "About" },
 	{ href: "/contact-us", label: "Contact" },
 ];
+
+const isHome = Astro.url.pathname === "/";
 ---
 
 <header class="mx-auto max-w-4xl px-4 pt-6">
 	<div class="flex items-center justify-between">
-		<a href="/" class="font-sans text-[14px] font-medium leading-5 text-ink">AI Tokens Cost Calculator</a>
+		<a href="/" class="flex items-center gap-1.5 font-sans text-[14px] font-medium leading-5 text-ink">
+			{!isHome && (
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M19 12H5M12 19l-7-7 7-7"></path>
+				</svg>
+			)}
+			AI Tokens Cost Calculator
+		</a>
 		<div class="flex items-center gap-3">
 			<button
 				type="button"
