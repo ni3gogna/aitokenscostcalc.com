@@ -150,10 +150,13 @@ import Calculator from "../components/Calculator.astro";
 				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
 					Frequently asked questions
 				</h2>
-				<div class="mt-4 space-y-5">
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much are AI tokens costing?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+				<div class="mt-4 divide-y divide-hairline border-y border-hairline">
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>How much are AI tokens costing?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							AI tokens cost anywhere from about $0.05 to $5 per million input tokens depending on the
 							provider and model tier, with output tokens priced four to six times higher than input
 							on the same model. Budget models like Llama 3.1 8B, GPT-5.4 nano, and DeepSeek V4-Flash
@@ -161,20 +164,26 @@ import Calculator from "../components/Calculator.astro";
 							3.5 sit at the high end. Use the calculator above for an exact price on your specific
 							prompt.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much do 1000 tokens cost?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>How much do 1000 tokens cost?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							Since providers price per million tokens, 1,000 tokens costs a fraction of a cent
 							everywhere. Budget-tier input pricing works out to roughly $0.00005–$0.001 per 1,000
 							tokens (Llama 3.1 8B, GPT-5.4 nano, DeepSeek V4-Flash), while flagship-tier input
 							pricing runs about $0.002–$0.005 per 1,000 tokens (GPT-5.5, Claude Opus 4.8, Gemini 3.1
 							Pro). Output tokens cost several times more per 1,000 than input tokens on every model.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">What is token cost across top AI models?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>What is token cost across top AI models?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							Per million tokens (input / output), flagship pricing looks roughly like: GPT-5.5 $5 /
 							$30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, Grok 4.5 $2 / $6, Mistral Medium
 							3.5 $1.50 / $7.50, Llama 3.3 70B $0.59 / $0.79 (via Groq), and DeepSeek V4-Pro $0.435 /
@@ -182,22 +191,26 @@ import Calculator from "../components/Calculator.astro";
 							fraction of the price. Pricing changes often, so the calculator above pulls current
 							per-provider rates and computes your actual cost rather than relying on a static table.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How to compare cost of top AI models?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>How to compare cost of top AI models?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							Enter your workload once — paste a prompt, or set a token or word count plus expected
 							output length — then select the models you want to compare, from a single provider or
 							across all of them. The calculator normalizes every provider's pricing into one dollar
 							total per model and ranks them cheapest to priciest, so you're comparing apples to
 							apples instead of eyeballing per-token rates across seven different pricing pages.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">
-							How to calculate token cost for various top AI models?
-						</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>How to calculate token cost for various top AI models?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							The formula is the same for every provider: (input tokens ÷ 1,000,000 × input price per
 							million) + (output tokens ÷ 1,000,000 × output price per million) = total cost. What
 							differs is the tokenizer and the price per million tokens, which vary by model. This
@@ -205,21 +218,25 @@ import Calculator from "../components/Calculator.astro";
 							provider's current pricing — so you get an exact total for GPT, Claude, Gemini, Grok,
 							DeepSeek, Mistral, and Llama without doing the math by hand.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">
-							Does this calculator use real token counts or estimates?
-						</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>Does this calculator use real token counts or estimates?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							OpenAI counts are exact, computed with the real o200k_base tokenizer. Claude, Gemini,
 							Grok, DeepSeek, Mistral, and Llama counts are close algorithmic approximations, since
 							none of those providers publish a browser-usable tokenizer — every estimate is clearly
 							labeled.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much cheaper is DeepSeek than GPT or Claude?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>How much cheaper is DeepSeek than GPT or Claude?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							DeepSeek's flagship V4-Pro runs about 90% cheaper on input and 95%+ cheaper on output,
 							per million tokens, than GPT-5.5 or Claude Opus 4.8 — and DeepSeek V4-Flash undercuts
 							every budget model on this page. That gap is real, but independent evals generally
@@ -228,23 +245,40 @@ import Calculator from "../components/Calculator.astro";
 							workload. Run your actual prompt through the calculator above to see the dollar
 							difference for your use case.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">Is my prompt uploaded anywhere?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>Is my prompt uploaded anywhere?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							No. Every calculation, including tokenization, runs entirely in your browser. Nothing
 							you paste is sent to a server or stored.
 						</p>
-					</div>
-					<div>
-						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How often is pricing updated?</h3>
-						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>How often is pricing updated?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
 							Model pricing is checked and refreshed regularly, with the last-verified date shown
 							under your results. Providers change prices often, so always confirm against the
 							official pricing page linked on each result card before budgeting.
 						</p>
-					</div>
+					</details>
 				</div>
+
+				<style>
+					.faq-summary::-webkit-details-marker {
+						display: none;
+					}
+					.faq-summary:focus-visible {
+						outline: 2px solid var(--color-link);
+						outline-offset: 2px;
+						border-radius: 2px;
+					}
+				</style>
 			</div>
 		</div>
 	</section>
