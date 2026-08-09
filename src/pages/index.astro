@@ -16,7 +16,7 @@ import Calculator from "../components/Calculator.astro";
 			Know your AI API costs before you build.
 		</h1>
 		<p class="mx-auto mt-3 max-w-xl font-sans text-[18px] leading-7 text-body">
-			Paste a prompt, or enter tokens or words, and compare real-time cost estimates across Claude, GPT, Gemini, and Grok — with per-provider tokenization, not a flat guess.
+			Paste a prompt, or enter tokens or words, and compare real-time cost estimates across Claude, GPT, Gemini, Grok, DeepSeek, Mistral, and Llama — with per-provider tokenization, not a flat guess.
 		</p>
 	</section>
 
@@ -31,11 +31,11 @@ import Calculator from "../components/Calculator.astro";
 				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
 					The AI Tokens Cost Calculator is a free, browser-based tool for estimating how much a prompt or
 					workload actually costs to run across today's leading language models. Instead of digging
-					through four separate pricing pages and doing the math by hand, you paste a prompt — or enter
+					through seven separate pricing pages and doing the math by hand, you paste a prompt — or enter
 					a token or word count — and get a side-by-side cost comparison for OpenAI, Anthropic Claude,
-					Google Gemini, and xAI Grok in seconds. As an AI model token cost calculator, it's built for
-					developers, product teams, and founders who need to budget an API integration before writing
-					a single line of production code.
+					Google Gemini, xAI Grok, DeepSeek, Mistral AI, and Meta Llama in seconds. As an AI model token
+					cost calculator, it's built for developers, product teams, and founders who need to budget an
+					API integration before writing a single line of production code.
 				</p>
 			</div>
 
@@ -85,13 +85,52 @@ import Calculator from "../components/Calculator.astro";
 
 			<div>
 				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					DeepSeek API pricing calculator
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					DeepSeek V4-Pro and V4-Flash undercut every other flagship-class model on this page, so this
+					doubles as a DeepSeek API pricing calculator for teams weighing a switch. Enter a prompt or
+					token count and see DeepSeek's cost sit alongside GPT, Claude, and Gemini at the same
+					workload, both with a 1M-token context window. Like the other non-OpenAI providers, DeepSeek
+					doesn't publish a browser-usable tokenizer, so DeepSeek token cost calculator results here are
+					close approximations rather than exact server-side counts.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					Mistral AI token cost calculator
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Use this as a Mistral token price calculator across Mistral Medium 3.5, Large 3, and Small 4 —
+					enter your prompt or token count once and see Mistral API pricing ranked against every other
+					provider for the same input and expected output length, so you can tell whether Mistral's
+					lower per-million rates actually translate into a cheaper bill for your workload.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
+					Llama API cost calculator
+				</h2>
+				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
+					Meta doesn't run its own paid Llama API anymore, so Llama pricing here reflects Groq's hosted
+					rates for Llama 3.3 70B, Llama 4 Scout, and Llama 3.1 8B — clearly labeled as "via Groq" since
+					other hosts like DeepInfra, Together, and AWS Bedrock price the same open-weight models
+					differently. Use it as a quick Llama token cost calculator to see where open-weight hosting
+					lands relative to closed models like GPT and Claude for the same prompt.
+				</p>
+			</div>
+
+			<div>
+				<h2 class="font-sans text-[22px] font-semibold leading-7 tracking-[-0.6px] text-ink">
 					Compare token cost across every AI provider
 				</h2>
 				<p class="mt-3 font-sans text-[15px] leading-7 text-body">
 					Because every model runs on the same input, this also works as a way to compare token cost
-					for AI providers head-to-head — Claude against GPT, Gemini against Grok, or all four at once
-					— using the same prompt, the same expected output length, and each provider's current
-					per-million-token pricing.
+					for AI providers head-to-head — Claude against GPT, Gemini against Grok, DeepSeek against
+					Llama, or all seven at once — using the same prompt, the same expected output length, and
+					each provider's current per-million-token pricing.
 				</p>
 			</div>
 
@@ -115,11 +154,11 @@ import Calculator from "../components/Calculator.astro";
 					<div>
 						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much are AI tokens costing?</h3>
 						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
-							AI tokens cost anywhere from about $0.20 to $5 per million input tokens depending on the
+							AI tokens cost anywhere from about $0.05 to $5 per million input tokens depending on the
 							provider and model tier, with output tokens priced four to six times higher than input
-							on the same model. Budget models like GPT-5.4 nano, Gemini 3.1 Flash-Lite, and Grok 4.1
-							Fast sit at the low end; flagship models like GPT-5.5, Claude Opus 4.8, and Gemini 3.1
-							Pro sit at the high end. Use the calculator above for an exact price on your specific
+							on the same model. Budget models like Llama 3.1 8B, GPT-5.4 nano, and DeepSeek V4-Flash
+							sit at the low end; flagship models like GPT-5.5, Claude Opus 4.8, and Mistral Medium
+							3.5 sit at the high end. Use the calculator above for an exact price on your specific
 							prompt.
 						</p>
 					</div>
@@ -127,8 +166,8 @@ import Calculator from "../components/Calculator.astro";
 						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much do 1000 tokens cost?</h3>
 						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
 							Since providers price per million tokens, 1,000 tokens costs a fraction of a cent
-							everywhere. Budget-tier input pricing works out to roughly $0.0002–$0.001 per 1,000
-							tokens (GPT-5.4 nano, Gemini 3.1 Flash-Lite, Grok 4.1 Fast), while flagship-tier input
+							everywhere. Budget-tier input pricing works out to roughly $0.00005–$0.001 per 1,000
+							tokens (Llama 3.1 8B, GPT-5.4 nano, DeepSeek V4-Flash), while flagship-tier input
 							pricing runs about $0.002–$0.005 per 1,000 tokens (GPT-5.5, Claude Opus 4.8, Gemini 3.1
 							Pro). Output tokens cost several times more per 1,000 than input tokens on every model.
 						</p>
@@ -137,10 +176,11 @@ import Calculator from "../components/Calculator.astro";
 						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">What is token cost across top AI models?</h3>
 						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
 							Per million tokens (input / output), flagship pricing looks roughly like: GPT-5.5 $5 /
-							$30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, and Grok 4.5 $2 / $6 — with each
-							provider also offering cheaper balanced and budget tiers at a fraction of the price.
-							Pricing changes often, so the calculator above pulls current per-provider rates and
-							computes your actual cost rather than relying on a static table.
+							$30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, Grok 4.5 $2 / $6, Mistral Medium
+							3.5 $1.50 / $7.50, Llama 3.3 70B $0.59 / $0.79 (via Groq), and DeepSeek V4-Pro $0.435 /
+							$0.87 — with each provider also offering cheaper balanced and budget tiers at a
+							fraction of the price. Pricing changes often, so the calculator above pulls current
+							per-provider rates and computes your actual cost rather than relying on a static table.
 						</p>
 					</div>
 					<div>
@@ -150,7 +190,7 @@ import Calculator from "../components/Calculator.astro";
 							output length — then select the models you want to compare, from a single provider or
 							across all of them. The calculator normalizes every provider's pricing into one dollar
 							total per model and ranks them cheapest to priciest, so you're comparing apples to
-							apples instead of eyeballing per-token rates across four different pricing pages.
+							apples instead of eyeballing per-token rates across seven different pricing pages.
 						</p>
 					</div>
 					<div>
@@ -162,8 +202,8 @@ import Calculator from "../components/Calculator.astro";
 							million) + (output tokens ÷ 1,000,000 × output price per million) = total cost. What
 							differs is the tokenizer and the price per million tokens, which vary by model. This
 							calculator automates both steps — tokenizing your prompt per model and applying each
-							provider's current pricing — so you get an exact total for GPT, Claude, Gemini, and
-							Grok without doing the math by hand.
+							provider's current pricing — so you get an exact total for GPT, Claude, Gemini, Grok,
+							DeepSeek, Mistral, and Llama without doing the math by hand.
 						</p>
 					</div>
 					<div>
@@ -172,8 +212,21 @@ import Calculator from "../components/Calculator.astro";
 						</h3>
 						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
 							OpenAI counts are exact, computed with the real o200k_base tokenizer. Claude, Gemini,
-							and Grok counts are close algorithmic approximations, since none of those providers
-							publish a browser-usable tokenizer — every estimate is clearly labeled.
+							Grok, DeepSeek, Mistral, and Llama counts are close algorithmic approximations, since
+							none of those providers publish a browser-usable tokenizer — every estimate is clearly
+							labeled.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-[15px] font-medium leading-6 text-ink">How much cheaper is DeepSeek than GPT or Claude?</h3>
+						<p class="mt-1 font-sans text-[15px] leading-7 text-body">
+							DeepSeek's flagship V4-Pro runs about 90% cheaper on input and 95%+ cheaper on output,
+							per million tokens, than GPT-5.5 or Claude Opus 4.8 — and DeepSeek V4-Flash undercuts
+							every budget model on this page. That gap is real, but independent evals generally
+							still place GPT-5.5 and Claude Opus 4.8 ahead of DeepSeek on the hardest reasoning and
+							coding tasks, so the cheapest option isn't automatically the right one for every
+							workload. Run your actual prompt through the calculator above to see the dollar
+							difference for your use case.
 						</p>
 					</div>
 					<div>
@@ -205,7 +258,7 @@ import Calculator from "../components/Calculator.astro";
 				name: "How much are AI tokens costing?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "AI tokens cost anywhere from about $0.20 to $5 per million input tokens depending on the provider and model tier, with output tokens priced four to six times higher than input on the same model. Budget models like GPT-5.4 nano, Gemini 3.1 Flash-Lite, and Grok 4.1 Fast sit at the low end; flagship models like GPT-5.5, Claude Opus 4.8, and Gemini 3.1 Pro sit at the high end.",
+					text: "AI tokens cost anywhere from about $0.05 to $5 per million input tokens depending on the provider and model tier, with output tokens priced four to six times higher than input on the same model. Budget models like Llama 3.1 8B, GPT-5.4 nano, and DeepSeek V4-Flash sit at the low end; flagship models like GPT-5.5, Claude Opus 4.8, and Mistral Medium 3.5 sit at the high end.",
 				},
 			},
 			{
@@ -213,7 +266,7 @@ import Calculator from "../components/Calculator.astro";
 				name: "How much do 1000 tokens cost?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Since providers price per million tokens, 1,000 tokens costs a fraction of a cent everywhere. Budget-tier input pricing works out to roughly $0.0002–$0.001 per 1,000 tokens (GPT-5.4 nano, Gemini 3.1 Flash-Lite, Grok 4.1 Fast), while flagship-tier input pricing runs about $0.002–$0.005 per 1,000 tokens (GPT-5.5, Claude Opus 4.8, Gemini 3.1 Pro). Output tokens cost several times more per 1,000 than input tokens on every model.",
+					text: "Since providers price per million tokens, 1,000 tokens costs a fraction of a cent everywhere. Budget-tier input pricing works out to roughly $0.00005–$0.001 per 1,000 tokens (Llama 3.1 8B, GPT-5.4 nano, DeepSeek V4-Flash), while flagship-tier input pricing runs about $0.002–$0.005 per 1,000 tokens (GPT-5.5, Claude Opus 4.8, Gemini 3.1 Pro). Output tokens cost several times more per 1,000 than input tokens on every model.",
 				},
 			},
 			{
@@ -221,7 +274,7 @@ import Calculator from "../components/Calculator.astro";
 				name: "What is token cost across top AI models?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "Per million tokens (input / output), flagship pricing looks roughly like: GPT-5.5 $5 / $30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, and Grok 4.5 $2 / $6 — with each provider also offering cheaper balanced and budget tiers at a fraction of the price. Pricing changes often, so the calculator above pulls current per-provider rates and computes your actual cost rather than relying on a static table.",
+					text: "Per million tokens (input / output), flagship pricing looks roughly like: GPT-5.5 $5 / $30, Claude Opus 4.8 $5 / $25, Gemini 3.1 Pro $2 / $12, Grok 4.5 $2 / $6, Mistral Medium 3.5 $1.50 / $7.50, Llama 3.3 70B $0.59 / $0.79 (via Groq), and DeepSeek V4-Pro $0.435 / $0.87 — with each provider also offering cheaper balanced and budget tiers at a fraction of the price. Pricing changes often, so the calculator above pulls current per-provider rates and computes your actual cost rather than relying on a static table.",
 				},
 			},
 			{
@@ -237,7 +290,7 @@ import Calculator from "../components/Calculator.astro";
 				name: "How to calculate token cost for various top AI models?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "The formula is the same for every provider: (input tokens ÷ 1,000,000 × input price per million) + (output tokens ÷ 1,000,000 × output price per million) = total cost. What differs is the tokenizer and the price per million tokens, which vary by model. This calculator automates both steps — tokenizing your prompt per model and applying each provider's current pricing — so you get an exact total for GPT, Claude, Gemini, and Grok without doing the math by hand.",
+					text: "The formula is the same for every provider: (input tokens ÷ 1,000,000 × input price per million) + (output tokens ÷ 1,000,000 × output price per million) = total cost. What differs is the tokenizer and the price per million tokens, which vary by model. This calculator automates both steps — tokenizing your prompt per model and applying each provider's current pricing — so you get an exact total for GPT, Claude, Gemini, Grok, DeepSeek, Mistral, and Llama without doing the math by hand.",
 				},
 			},
 			{
@@ -245,7 +298,15 @@ import Calculator from "../components/Calculator.astro";
 				name: "Does this calculator use real token counts or estimates?",
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: "OpenAI counts are exact, computed with the real o200k_base tokenizer. Claude, Gemini, and Grok counts are close algorithmic approximations, since none of those providers publish a browser-usable tokenizer.",
+					text: "OpenAI counts are exact, computed with the real o200k_base tokenizer. Claude, Gemini, Grok, DeepSeek, Mistral, and Llama counts are close algorithmic approximations, since none of those providers publish a browser-usable tokenizer.",
+				},
+			},
+			{
+				"@type": "Question",
+				name: "How much cheaper is DeepSeek than GPT or Claude?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "DeepSeek's flagship V4-Pro runs about 90% cheaper on input and 95%+ cheaper on output, per million tokens, than GPT-5.5 or Claude Opus 4.8 — and DeepSeek V4-Flash undercuts every budget model on this page. That gap is real, but independent evals generally still place GPT-5.5 and Claude Opus 4.8 ahead of DeepSeek on the hardest reasoning and coding tasks, so the cheapest option isn't automatically the right one for every workload.",
 				},
 			},
 			{

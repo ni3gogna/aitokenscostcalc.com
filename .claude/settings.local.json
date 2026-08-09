@@ -11,7 +11,10 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(node -e \"console.log\\(require\\('C:/Users/nitin/Desktop/My Projects/aitokenscostcalc.com/node_modules/sharp'\\)\\)\")",
       "Bash(node -e ' *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npx wrangler *)",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "WebSearch"
     ]
   }
 }
