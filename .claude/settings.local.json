@@ -14,7 +14,11 @@
       "Bash(npm run *)",
       "Bash(npx wrangler *)",
       "WebFetch(domain:developers.cloudflare.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git commit *)"
     ]
   }
 }
