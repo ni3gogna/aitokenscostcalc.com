@@ -24,6 +24,16 @@ export function calculateCost(
   };
 }
 
+export interface CostProjection {
+  monthlyCost: number;
+  annualCost: number;
+}
+
+export function projectCost(totalCost: number, requestsPerMonth: number): CostProjection {
+  const monthlyCost = totalCost * requestsPerMonth;
+  return { monthlyCost, annualCost: monthlyCost * 12 };
+}
+
 export function rankByCost(costs: ModelCost[]): ModelCost[] {
   return [...costs].sort((a, b) => {
     if (a.fitsContext !== b.fitsContext) return a.fitsContext ? -1 : 1;
