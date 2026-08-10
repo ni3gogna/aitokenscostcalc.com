@@ -93,6 +93,13 @@ const tierLabel = { flagship: "Flagship", balanced: "Balanced", budget: "Budget"
     <!-- Model selection -->
     <div class="mt-8 border-t border-hairline pt-6">
       <h2 class="font-sans text-[20px] font-semibold leading-7 tracking-[-0.6px] text-ink">Models to compare</h2>
+      <div class="mt-3 flex flex-wrap gap-2">
+        <button type="button" class="filter-chip" data-filter="all">Select all</button>
+        <button type="button" class="filter-chip" data-filter="none">Select none</button>
+        <button type="button" class="filter-chip" data-filter="flagship">All flagship</button>
+        <button type="button" class="filter-chip" data-filter="balanced">All balanced</button>
+        <button type="button" class="filter-chip" data-filter="budget">All budget</button>
+      </div>
       <div class="mt-3 grid gap-4 sm:grid-cols-2">
         {providerOrder.map((provider) => (
           <fieldset class="rounded-md border border-hairline p-3">
@@ -174,6 +181,25 @@ const tierLabel = { flagship: "Flagship", balanced: "Balanced", budget: "Budget"
     color: var(--color-ink);
   }
   .mode-tab:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+  .filter-chip {
+    border-radius: var(--radius-pill-sm);
+    padding: 0 12px;
+    height: 28px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--color-body);
+    background: var(--color-canvas);
+    border: 1px solid var(--color-hairline);
+  }
+  .filter-chip:hover {
+    border-color: var(--color-hairline-strong);
+    color: var(--color-ink);
+  }
+  .filter-chip:focus-visible {
     outline: 2px solid var(--color-link);
     outline-offset: 2px;
   }
@@ -261,6 +287,19 @@ const tierLabel = { flagship: "Flagship", balanced: "Balanced", budget: "Budget"
   promptInput.addEventListener("input", () => {
     promptWordCount.textContent = countWords(promptInput.value).toLocaleString("en-US");
   });
+
+  const filterChips = Array.from(document.querySelectorAll<HTMLButtonElement>(".filter-chip"));
+  for (const chip of filterChips) {
+    chip.addEventListener("click", () => {
+      const filter = chip.dataset.filter;
+      for (const checkbox of form.querySelectorAll<HTMLInputElement>('input[name="model"]')) {
+        const model = MODELS.find((m) => m.id === checkbox.value);
+        if (!model) continue;
+        checkbox.checked =
+          filter === "all" ? true : filter === "none" ? false : model.tier === filter;
+      }
+    });
+  }
 
   function selectedModels(): Model[] {
     const ids = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="model"]:checked')).map(
