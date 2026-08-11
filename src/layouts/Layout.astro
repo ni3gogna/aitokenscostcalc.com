@@ -5,30 +5,68 @@ interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
+	keywords?: string;
 }
 
 const {
-	title = "AI Tokens Cost Calculator — Compare OpenAI, Claude & Gemini Pricing",
+	title = "AI Tokens Cost Calculator — Compare OpenAI, Claude & Gemini Pricing | aitokenscostcalc.com",
 	description = "Free AI tokens cost calculator to estimate and compare OpenAI, Claude, Gemini, and Grok token pricing. Calculate token cost, compare models, and find the cheapest AI for your prompts — instantly, in your browser.",
 	ogImage = "/og-image.png",
+	keywords = "ai tokens cost calculator, ai tokens cost calc, aitokenscostcalc, aitokenscostcalc.com, ai token cost calculator, ai token calculator, llm token cost calculator, openai token cost calculator, claude token cost calculator, gemini token cost calculator, grok token cost calculator, deepseek api pricing calculator, mistral token cost calculator, llama token cost calculator, gpt token price calculator, compare ai model pricing, cheapest ai model, api cost estimator",
 } = Astro.props;
 
+const siteUrl = Astro.site!.toString().replace(/\/$/, "");
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = new URL(ogImage, Astro.site);
 
+// Brand-name variants. Users search the domain shorthand ("AI Tokens Cost Calc"),
+// the spelled-out name, and the bare domain — alternateName ties them to one entity.
+const brandNames = [
+	"AI Tokens Cost Calc",
+	"AI Tokens Cost Calculator",
+	"aitokenscostcalc.com",
+	"aitokenscostcalc",
+	"AI Token Cost Calculator",
+];
+
 const structuredData = {
 	"@context": "https://schema.org",
-	"@type": "WebApplication",
-	name: "AI Tokens Cost Calculator",
-	url: canonicalUrl.toString(),
-	description,
-	applicationCategory: "DeveloperApplication",
-	operatingSystem: "Any (runs in browser)",
-	offers: {
-		"@type": "Offer",
-		price: "0",
-		priceCurrency: "USD",
-	},
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": `${siteUrl}/#website`,
+			name: "AI Tokens Cost Calculator",
+			alternateName: brandNames,
+			url: `${siteUrl}/`,
+			description,
+			inLanguage: "en-US",
+			publisher: { "@id": `${siteUrl}/#organization` },
+		},
+		{
+			"@type": "Organization",
+			"@id": `${siteUrl}/#organization`,
+			name: "AI Tokens Cost Calculator",
+			alternateName: brandNames,
+			url: `${siteUrl}/`,
+			logo: new URL("/web-app-manifest-512x512.png", Astro.site).toString(),
+		},
+		{
+			"@type": "WebApplication",
+			"@id": `${siteUrl}/#webapp`,
+			name: "AI Tokens Cost Calculator",
+			alternateName: brandNames,
+			url: canonicalUrl.toString(),
+			description,
+			applicationCategory: "DeveloperApplication",
+			operatingSystem: "Any (runs in browser)",
+			isPartOf: { "@id": `${siteUrl}/#website` },
+			offers: {
+				"@type": "Offer",
+				price: "0",
+				priceCurrency: "USD",
+			},
+		},
+	],
 };
 ---
 
@@ -56,8 +94,11 @@ const structuredData = {
 
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
 		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
 		<link rel="canonical" href={canonicalUrl} />
+		<meta name="application-name" content="AI Tokens Cost Calculator" />
 		<meta name="theme-color" content="#171717" />
 
 		<!-- Open Graph -->

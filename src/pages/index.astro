@@ -13,10 +13,13 @@ import Calculator from "../components/Calculator.astro";
 			Free · No signup · Runs entirely in your browser
 		</span>
 		<h1 class="mt-4 font-sans text-[32px] font-semibold leading-10 tracking-[-1.28px] text-ink sm:text-[48px] sm:leading-[48px] sm:tracking-[-2.4px]">
+			<span class="mb-3 block font-mono text-[12px] font-normal uppercase leading-4 tracking-[0.08em] text-mute">
+				AI Tokens Cost Calculator
+			</span>
 			Know your AI API costs before you build.
 		</h1>
 		<p class="mx-auto mt-3 max-w-xl font-sans text-[18px] leading-7 text-body">
-			Paste a prompt, or enter tokens or words, and compare real-time cost estimates across Claude, GPT, Gemini, Grok, DeepSeek, Mistral, and Llama — with per-provider tokenization, not a flat guess.
+			Paste a prompt, or enter tokens or words, and compare real-time token cost estimates across Claude, GPT, Gemini, Grok, DeepSeek, Mistral, and Llama — with per-provider tokenization, not a flat guess.
 		</p>
 	</section>
 
@@ -35,7 +38,9 @@ import Calculator from "../components/Calculator.astro";
 					a token or word count — and get a side-by-side cost comparison for OpenAI, Anthropic Claude,
 					Google Gemini, xAI Grok, DeepSeek, Mistral AI, and Meta Llama in seconds. As an AI model token
 					cost calculator, it's built for developers, product teams, and founders who need to budget an
-					API integration before writing a single line of production code.
+					API integration before writing a single line of production code. It lives at
+					aitokenscostcalc.com, so you'll also see it referred to as AI Tokens Cost Calc — the
+					short and long names are the same free tool.
 				</p>
 			</div>
 
@@ -182,6 +187,18 @@ import Calculator from "../components/Calculator.astro";
 				<div class="mt-4 divide-y divide-hairline border-y border-hairline">
 					<details class="group py-4">
 						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
+							<span>Is AI Tokens Cost Calc the same as the AI Tokens Cost Calculator?</span>
+							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+						</summary>
+						<p class="mt-2 font-sans text-[15px] leading-7 text-body">
+							Yes — same tool, two names. The full name is the AI Tokens Cost Calculator; the site's
+							domain is aitokenscostcalc.com, so it's commonly shortened to AI Tokens Cost Calc. There
+							is only one calculator, it's free, and it runs entirely in your browser at
+							aitokenscostcalc.com.
+						</p>
+					</details>
+					<details class="group py-4">
+						<summary class="faq-summary flex cursor-pointer list-none items-center justify-between gap-4 font-sans text-[15px] font-medium leading-6 text-ink">
 							<span>How much are AI tokens costing?</span>
 							<svg class="h-4 w-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
 						</summary>
@@ -316,6 +333,14 @@ import Calculator from "../components/Calculator.astro";
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Is AI Tokens Cost Calc the same as the AI Tokens Cost Calculator?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Yes — same tool, two names. The full name is the AI Tokens Cost Calculator; the site's domain is aitokenscostcalc.com, so it's commonly shortened to AI Tokens Cost Calc. There is only one calculator, it's free, and it runs entirely in your browser at aitokenscostcalc.com.",
+				},
+			},
 			{
 				"@type": "Question",
 				name: "How much are AI tokens costing?",

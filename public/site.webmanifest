@@ -1,6 +1,8 @@
 {
-  "name": "AITokensCostCalculator",
-  "short_name": "AICost",
+  "name": "AI Tokens Cost Calculator",
+  "short_name": "AI Tokens Cost Calc",
+  "description": "Free AI tokens cost calculator to estimate and compare OpenAI, Claude, Gemini, and Grok token pricing.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
